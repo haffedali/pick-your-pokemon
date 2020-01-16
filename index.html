@@ -11,6 +11,7 @@ body {
     font-size:10pt;
     margin:0;
     padding:10px;
+    text-align: center;
 }
 
 a:link, a:visited {
@@ -208,7 +209,9 @@ button.disabled:hover {
 <body>
 <h1>Picker</h1>
 
-<p>You can include any content you want here.</p>
+<p>Pick away! After some rounds of picking (quite a few actually; the dex is getting large!) the batches will get smaller and smaller </p>
+
+<p>and by the end of it all, you'll have a list of your favorite pokemon!</p>
 
 <div id="container">
 
@@ -1124,12 +1127,15 @@ var items = [
 {"id":887,"name":"Zacian\r","image":"https://www.serebii.net/swordshield/pokemon/888.png"},
 {"id":888,"name":"Zamazenta\r","image":"https://www.serebii.net/swordshield/pokemon/889.png"},
 {"id":889,"name":"Eternatus\r","image":"https://www.serebii.net/swordshield/pokemon/890.png"},
-{"id":890,"name":"","image":""},
-
 ];
 
 var myPicker = new picker.Picker({
-    items: items
+    items: items,
+    localStorageKey: 'picker-state',
+    defaultSettings: {
+        minBatchSize: 6,
+        maxBatchSize: 20
+    }
 });
 
 var pickerUI = new PickerUI(myPicker, {
@@ -1139,7 +1145,10 @@ var pickerUI = new PickerUI(myPicker, {
         undo: "#undo",
         redo: "#redo",
         evaluating: "#evaluating",
-        favorites: "#favorites"
+        favorites: "#favorites",
+        settings: {
+            maxBatchSize: '#max-batch-size'
+        }
     }
 });
 
